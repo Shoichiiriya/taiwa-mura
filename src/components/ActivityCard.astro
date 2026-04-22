@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  tagline: string;
+  frequency?: string;
+  slug: string;
+}
+
+const { title, tagline, frequency, slug } = Astro.props;
+---
+
+<a
+  href={`/activities/${slug}`}
+  style="display: block; border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1.25rem; text-decoration: none; color: inherit;"
+>
+  <h3 style="font-family: var(--font-heading); font-weight: 700; font-size: 1.125rem; color: var(--color-text);">
+    {title}
+  </h3>
+  <p style="font-size: 0.875rem; color: var(--color-muted); margin-top: 0.25rem;">{tagline}</p>
+  {frequency && (
+    <p style="font-size: 0.75rem; color: var(--color-muted); margin-top: 0.5rem;">🗓 {frequency}</p>
+  )}
+</a>

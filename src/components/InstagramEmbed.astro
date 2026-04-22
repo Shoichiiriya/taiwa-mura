@@ -1,0 +1,16 @@
+---
+interface Props {
+  postUrl: string;
+}
+const { postUrl } = Astro.props;
+---
+
+<div class="instagram-embed-wrapper">
+  <blockquote
+    class="instagram-media"
+    data-instgrm-permalink={postUrl}
+    data-instgrm-version="14"
+    style="max-width:540px; min-width:326px; width:calc(100% - 2px); margin: 0 auto;"
+  ></blockquote>
+  <script async src="//www.instagram.com/embed.js"></script>
+</div>

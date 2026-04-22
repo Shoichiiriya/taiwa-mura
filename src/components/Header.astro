@@ -1,0 +1,33 @@
+---
+const navLinks = [
+  { href: '/', label: 'ホーム' },
+  { href: '/activities', label: '活動' },
+  { href: '/events', label: 'イベント' },
+  { href: '/links', label: 'リンク' },
+  { href: '/about', label: 'About' },
+];
+
+const current = Astro.url.pathname;
+---
+
+<header style="border-bottom: 1px solid var(--color-border); background: var(--color-bg);">
+  <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--color-text); text-decoration: none;">
+      たいわ村
+    </a>
+    <nav>
+      <ul class="flex gap-6 list-none m-0 p-0">
+        {navLinks.map(link => (
+          <li>
+            <a
+              href={link.href}
+              style={`font-size: 0.875rem; text-decoration: none; color: ${current === link.href ? 'var(--color-brand)' : 'var(--color-muted)'}; font-weight: ${current === link.href ? '500' : '400'};`}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>

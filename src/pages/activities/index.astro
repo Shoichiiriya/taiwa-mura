@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ActivityCard from '../../components/ActivityCard.astro';
+import { getCollection } from 'astro:content';
+
+const activities = await getCollection('activities');
+const sorted = activities.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout title="活動" description="たいわ村の活動一覧。哲学対話・対話散歩・読書会・ZINEなど。">
+  <div style="max-width: 48rem; margin: 0 auto; padding: 3rem 1.5rem;">
+    <h1 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--color-text); margin-bottom: 0.75rem;">
+      活動
+    </h1>
+    <p style="color: var(--color-muted); margin-bottom: 2.5rem; line-height: 1.7;">
+      たいわ村では、さまざまな対話の場を開いています。
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem;">
+      {sorted.map(activity => (
+        <ActivityCard
+          title={activity.data.title}
+          tagline={activity.data.tagline}
+          frequency={activity.data.frequency}
+          slug={activity.id}
+        />
+      ))}
+    </div>
+  </div>
+</Layout>

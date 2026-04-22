@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const links = [
+  {
+    label: 'Instagram',
+    description: '活動の様子・イベント告知',
+    url: 'https://www.instagram.com/',  // TODO: 実際のURLに変更
+    icon: '📷',
+  },
+  {
+    label: 'note',
+    description: '活動レポート・コラム',
+    url: 'https://note.com/',  // TODO: 実際のURLに変更
+    icon: '✍️',
+  },
+  {
+    label: 'イベント申し込み（Peatix）',
+    description: '参加お申し込みはこちら',
+    url: 'https://peatix.com/',  // TODO: 実際のURLに変更
+    icon: '🎟️',
+  },
+  {
+    label: 'お問い合わせ',
+    description: 'ご質問・コラボのご相談など',
+    url: 'mailto:',  // TODO: メールアドレスを設定
+    icon: '✉️',
+  },
+];
+---
+
+<Layout title="リンク" description="たいわ村のSNS・リンク集。Instagram・note・Peatix・お問い合わせ。">
+  <div style="max-width: 28rem; margin: 0 auto; padding: 3rem 1.5rem;">
+    <div style="text-align: center; margin-bottom: 2.5rem;">
+      <h1 style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; color: var(--color-text);">
+        たいわ村
+      </h1>
+      <p style="color: var(--color-muted); margin-top: 0.5rem; font-size: 0.9375rem;">
+        問い、歩き、語り合う場所
+      </p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+      {links.map(link => (
+        <a
+          href={link.url}
+          target={link.url.startsWith('mailto') ? undefined : '_blank'}
+          rel="noopener noreferrer"
+          style="display: flex; align-items: center; gap: 1rem; border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1rem 1.25rem; text-decoration: none; color: inherit;"
+        >
+          <span style="font-size: 1.5rem; flex-shrink: 0;">{link.icon}</span>
+          <div>
+            <div style="font-weight: 600; font-size: 0.9375rem; color: var(--color-text);">{link.label}</div>
+            <div style="font-size: 0.8125rem; color: var(--color-muted); margin-top: 0.125rem;">{link.description}</div>
+          </div>
+          <span style="margin-left: auto; color: var(--color-muted); font-size: 0.875rem;">→</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

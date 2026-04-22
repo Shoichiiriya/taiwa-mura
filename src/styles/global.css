@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+/*
+  ========================================
+  デザイントークン
+  ここを変更するとサイト全体のデザインが変わります
+  ========================================
+*/
+@theme {
+  /* --- カラー ---
+     brand:       メインカラー（ボタン・リンク・アクセント）
+     brand-light: カードホバー背景など薄い用途
+     brand-dark:  濃い強調
+     bg:          ページ背景
+     text:        本文テキスト
+     muted:       サブテキスト・ラベル
+     border:      ボーダー・区切り線
+  */
+  --color-brand: oklch(52% 0.11 75);
+  --color-brand-light: oklch(96% 0.03 75);
+  --color-brand-dark: oklch(33% 0.09 75);
+  --color-bg: oklch(98.5% 0.008 75);
+  --color-text: oklch(18% 0.02 75);
+  --color-muted: oklch(55% 0.025 75);
+  --color-border: oklch(89% 0.02 75);
+
+  /* --- フォント ---
+     heading: 見出し用（明朝体）
+     body:    本文用（ゴシック体）
+  */
+  --font-heading: 'Noto Serif JP', Georgia, serif;
+  --font-body: 'Noto Sans JP', system-ui, sans-serif;
+}
+
+html {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}

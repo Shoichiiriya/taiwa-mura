@@ -1,0 +1,65 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import EventCard from '../../components/EventCard.astro';
+import { getCollection } from 'astro:content';
+
+const allEvents = await getCollection('events');
+const now = new Date();
+
+const upcoming = allEvents
+  .filter(e => new Date(e.data.date) >= now)
+  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
+
+const past = allEvents
+  .filter(e => new Date(e.data.date) < now)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+---
+
+<Layout title="イベント" description="たいわ村のイベント一覧・申し込み情報。">
+  <div style="max-width: 48rem; margin: 0 auto; padding: 3rem 1.5rem;">
+    <h1 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--color-text); margin-bottom: 2rem;">
+      イベント
+    </h1>
+
+    {upcoming.length > 0 ? (
+      <section style="margin-bottom: 3rem;">
+        <h2 style="font-size: 1.125rem; font-weight: 600; color: var(--color-muted); margin-bottom: 1rem; letter-spacing: 0.05em;">
+          開催予定
+        </h2>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          {upcoming.map(event => (
+            <EventCard
+              title={event.data.title}
+              date={event.data.date}
+              location={event.data.location}
+              description={event.data.description}
+              applyUrl={event.data.applyUrl}
+              slug={event.id}
+            />
+          ))}
+        </div>
+      </section>
+    ) : (
+      <p style="color: var(--color-muted); padding: 2rem 0;">現在、開催予定のイベントはありません。</p>
+    )}
+
+    {past.length > 0 && (
+      <section>
+        <h2 style="font-size: 1.125rem; font-weight: 600; color: var(--color-muted); margin-bottom: 1rem; letter-spacing: 0.05em;">
+          過去のイベント
+        </h2>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          {past.map(event => (
+            <EventCard
+              title={event.data.title}
+              date={event.data.date}
+              location={event.data.location}
+              description={event.data.description}
+              slug={event.id}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+</Layout>

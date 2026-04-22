@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ActivityCard from '../components/ActivityCard.astro';
+import EventCard from '../components/EventCard.astro';
+import { getCollection } from 'astro:content';
+
+const allEvents = await getCollection('events');
+const upcomingEvents = allEvents
+  .filter(e => new Date(e.data.date) >= new Date())
+  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime())
+  .slice(0, 3);
+
+const activities = await getCollection('activities');
+const sortedActivities = activities.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout title="ホーム">
+  <!-- ヒーロー -->
+  <section style="padding: 5rem 1.5rem 4rem; text-align: center; max-width: 48rem; margin: 0 auto;">
+    <h1 style="font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.3; color: var(--color-text);">
+      問い、歩き、語り合う場所
+    </h1>
+    <p style="margin-top: 1.5rem; font-size: 1.125rem; color: var(--color-muted); line-height: 1.8;">
+      たいわ村は、哲学対話・対話散歩・読書会などを通じて<br />
+      対話の文化を育むコミュニティです。
+    </p>
+    <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="/events" style="background: var(--color-brand); color: white; padding: 0.75rem 1.5rem; border-radius: 0.375rem; text-decoration: none; font-size: 0.9375rem; font-weight: 500;">
+        イベントを見る
+      </a>
+      <a href="/about" style="border: 1px solid var(--color-border); color: var(--color-text); padding: 0.75rem 1.5rem; border-radius: 0.375rem; text-decoration: none; font-size: 0.9375rem;">
+        たいわ村とは
+      </a>
+    </div>
+  </section>
+
+  <!-- 活動 -->
+  <section style="max-width: 48rem; margin: 0 auto; padding: 0 1.5rem 4rem;">
+    <h2 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--color-text);">
+      活動
+    </h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;">
+      {sortedActivities.map(activity => (
+        <ActivityCard
+          title={activity.data.title}
+          tagline={activity.data.tagline}
+          frequency={activity.data.frequency}
+          slug={activity.id}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- 直近イベント -->
+  {upcomingEvents.length > 0 && (
+    <section style="max-width: 48rem; margin: 0 auto; padding: 0 1.5rem 4rem;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.5rem;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--color-text);">
+          直近のイベント
+        </h2>
+        <a href="/events" style="font-size: 0.875rem; color: var(--color-brand); text-decoration: none;">
+          すべて見る →
+        </a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        {upcomingEvents.map(event => (
+          <EventCard
+            title={event.data.title}
+            date={event.data.date}
+            location={event.data.location}
+            description={event.data.description}
+            applyUrl={event.data.applyUrl}
+            slug={event.id}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+</Layout>
