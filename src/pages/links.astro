@@ -30,32 +30,78 @@ const links = [
 ---
 
 <Layout title="リンク" description="たいわ村のSNS・リンク集。Instagram・note・Peatix・お問い合わせ。">
-  <div style="max-width: 28rem; margin: 0 auto; padding: 3rem 1.5rem;">
-    <div style="text-align: center; margin-bottom: 2.5rem;">
-      <h1 style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; color: var(--color-text);">
-        たいわ村
-      </h1>
-      <p style="color: var(--color-muted); margin-top: 0.5rem; font-size: 0.9375rem;">
-        問い、歩き、語り合う場所
-      </p>
-    </div>
+  <div class="links-page">
+    <div class="links-card">
+      <div class="links-head">
+        <p class="brand-mark">たいわ村</p>
+        <p class="brand-tagline">問い、歩き、語り合う場所</p>
+      </div>
 
-    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-      {links.map(link => (
-        <a
-          href={link.url}
-          target={link.url.startsWith('mailto') ? undefined : '_blank'}
-          rel="noopener noreferrer"
-          style="display: flex; align-items: center; gap: 1rem; border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1rem 1.25rem; text-decoration: none; color: inherit;"
-        >
-          <span style="font-size: 1.5rem; flex-shrink: 0;">{link.icon}</span>
-          <div>
-            <div style="font-weight: 600; font-size: 0.9375rem; color: var(--color-text);">{link.label}</div>
-            <div style="font-size: 0.8125rem; color: var(--color-muted); margin-top: 0.125rem;">{link.description}</div>
-          </div>
-          <span style="margin-left: auto; color: var(--color-muted); font-size: 0.875rem;">→</span>
-        </a>
-      ))}
+      <div class="link-list">
+        {links.map(link => (
+          <a
+            href={link.url}
+            target={link.url.startsWith('mailto') ? undefined : '_blank'}
+            rel="noopener noreferrer"
+            class="link-item"
+          >
+            <span class="link-icon">{link.icon}</span>
+            <span class="link-text">
+              <span class="link-label">{link.label}</span>
+              <span class="link-desc">{link.description}</span>
+            </span>
+            <span class="link-arrow">→</span>
+          </a>
+        ))}
+      </div>
     </div>
   </div>
 </Layout>
+
+<style>
+  .links-page {
+    max-width: 30rem;
+    margin-inline: auto;
+    padding: 4rem 1.5rem 3rem;
+  }
+  .links-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 1.75rem;
+    padding: 2.5rem 1.75rem;
+    box-shadow: var(--shadow-soft);
+  }
+  .links-head { text-align: center; margin-bottom: 2rem; }
+  .brand-mark {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+  }
+  .brand-tagline { color: var(--color-muted); margin-top: 0.5rem; font-size: 0.9rem; }
+
+  .link-list { display: flex; flex-direction: column; gap: 0.8rem; }
+  .link-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    padding: 1rem 1.2rem;
+    text-decoration: none;
+    color: inherit;
+    background: var(--color-bg);
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  .link-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-brand-light);
+    box-shadow: var(--shadow-soft);
+  }
+  .link-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .link-text { display: flex; flex-direction: column; }
+  .link-label { font-weight: 600; font-size: 0.95rem; color: var(--color-text); }
+  .link-desc { font-size: 0.8rem; color: var(--color-muted); margin-top: 0.15rem; }
+  .link-arrow { margin-left: auto; color: var(--color-muted); }
+</style>

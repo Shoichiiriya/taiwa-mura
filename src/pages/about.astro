@@ -3,58 +3,57 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="About" description="たいわ村とは。哲学対話・対話散歩・読書会を行うコミュニティについて。">
-  <div style="max-width: 48rem; margin: 0 auto; padding: 3rem 1.5rem;">
-    <h1 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--color-text); margin-bottom: 2rem;">
-      About
-    </h1>
+  <div class="container-narrow page">
+    <header class="page-head">
+      <p class="eyebrow">About</p>
+      <h1 class="page-title">たいわ村について</h1>
+    </header>
 
-    <section style="margin-bottom: 3rem;">
-      <h2 style="font-family: var(--font-heading); font-size: 1.375rem; font-weight: 700; color: var(--color-text); margin-bottom: 1rem;">
-        たいわ村とは
-      </h2>
-      <div style="line-height: 1.9; color: var(--color-text);">
+    <div class="img-slot about-hero">
+      <img src="/images/about.jpg" alt="" onerror="this.remove()" />
+    </div>
+
+    <section class="block">
+      <h2 class="block-title">たいわ村とは</h2>
+      <div class="block-body">
         <p>
           たいわ村は、哲学対話・読書会・対話散歩などのイベントを企画している二人組ユニットです。
         </p>
-        <p style="margin-top: 1rem;">
+        <p>
           「対話」という概念をベースに、人間を人間として扱い続けることを目標に、日々さまざまなことに手を出しています。現在は「書店kamos」（東京都墨田区）にて、月に一度の哲学対話と不定期の読書会を開催。最近は東京都内での対話散歩もアツいです。
         </p>
-        <p style="margin-top: 1rem;">
+        <p>
           連絡の返信が遅いことに定評があります。気の良さだけで、温かな目で見守ってもらえると助かります。
         </p>
       </div>
     </section>
 
-    <section style="margin-bottom: 3rem;">
-      <h2 style="font-family: var(--font-heading); font-size: 1.375rem; font-weight: 700; color: var(--color-text); margin-bottom: 1rem;">
-        わたしたちが大切にしていること
-      </h2>
-      <div style="line-height: 1.9; color: var(--color-text);">
+    <section class="block">
+      <h2 class="block-title">わたしたちが大切にしていること</h2>
+      <div class="block-body">
         <p>
           「対話（Dialogue）」と「会話（Conversation）」は違います。対話とは、双方が席に着こうとする意思を持ち、相手の感情をそのまま受け取り、自分の本音を適切な形で伝え合う営みです。
         </p>
-        <p style="margin-top: 1rem;">
+        <p>
           対話の場では、語りにくさをそのまま受け入れることが大切です。すぐに「分かりやすく」まとめようとすることは、語り手の手触りや感情の機微を削ぎ落とす危険があります。対話の目的は合意形成ではなく、共に問い続けることにあります。
         </p>
-        <p style="margin-top: 1rem;">
+        <p>
           誰かが自分の弱さを語れる場にするために、わたしたちは理論や知識で武装するのではなく、自ら膝を折ることを選びます。武器を捨てた人のそばで、対話は生まれます。
         </p>
       </div>
     </section>
 
-    <section style="margin-bottom: 3rem;">
-      <h2 style="font-family: var(--font-heading); font-size: 1.375rem; font-weight: 700; color: var(--color-text); margin-bottom: 1rem;">
-        主催
-      </h2>
-      <div style="display: flex; flex-direction: column; gap: 1.5rem; line-height: 1.9; color: var(--color-text);">
-        <div>
-          <p style="font-weight: 600; margin-bottom: 0.25rem;">みん</p>
+    <section class="block">
+      <h2 class="block-title">主催</h2>
+      <div class="block-body profiles">
+        <div class="profile">
+          <p class="profile-name">みん</p>
           <p>
             一人称が「ぼくらは」。何かあるとすぐ「人間は〜」と主語がデカくなりがち。対話するときは、声と主語の大きさを抑えるのに必死。
           </p>
         </div>
-        <div>
-          <p style="font-weight: 600; margin-bottom: 0.25rem;">絶望（のぞむ）</p>
+        <div class="profile">
+          <p class="profile-name">絶望（のぞむ）</p>
           <p>
             人に名乗るときは「のぞむ」としている。二人組のよく怒ってる方。山月記を読んでデカい声を出すのが趣味。「ブラックジョーク」という名前で、友人と創作活動もしている。
           </p>
@@ -62,15 +61,44 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </section>
 
-    <section>
-      <h2 style="font-family: var(--font-heading); font-size: 1.375rem; font-weight: 700; color: var(--color-text); margin-bottom: 1rem;">
-        お問い合わせ
-      </h2>
-      <p style="line-height: 1.9; color: var(--color-text);">
-        活動へのご参加・コラボレーションのご相談は
-        <a href="/links" style="color: var(--color-brand); text-decoration: none;">リンクページ</a>
-        よりお気軽にご連絡ください。
-      </p>
+    <section class="block">
+      <h2 class="block-title">お問い合わせ</h2>
+      <div class="block-body">
+        <p>
+          活動へのご参加・コラボレーションのご相談は
+          <a href="/links" class="inline-link">リンクページ</a>
+          よりお気軽にご連絡ください。
+        </p>
+      </div>
     </section>
   </div>
 </Layout>
+
+<style>
+  .page { padding: 3.5rem 0 2rem; }
+  .page-head { margin-bottom: 2rem; }
+  .page-title { font-size: 2.2rem; margin-top: 0.4rem; color: var(--color-text); }
+  .about-hero {
+    aspect-ratio: 16 / 9;
+    border-radius: 1.5rem;
+    margin-bottom: 2.8rem;
+    box-shadow: var(--shadow-soft);
+  }
+  .block { margin-bottom: 2.8rem; }
+  .block-title {
+    font-size: 1.3rem;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    padding-left: 0.9rem;
+    border-left: 3px solid var(--color-brand);
+  }
+  .block-body { line-height: 1.95; color: var(--color-text); }
+  .block-body > p + p { margin-top: 1rem; }
+  .profiles { display: flex; flex-direction: column; gap: 1.5rem; }
+  .profile-name {
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    color: var(--color-brand-dark);
+  }
+  .inline-link { color: var(--color-brand); text-decoration: underline; text-underline-offset: 3px; }
+</style>

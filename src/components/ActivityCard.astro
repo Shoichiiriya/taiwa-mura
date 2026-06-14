@@ -9,15 +9,47 @@ interface Props {
 const { title, tagline, frequency, slug } = Astro.props;
 ---
 
-<a
-  href={`/activities/${slug}`}
-  style="display: block; border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1.25rem; text-decoration: none; color: inherit;"
->
-  <h3 style="font-family: var(--font-heading); font-weight: 700; font-size: 1.125rem; color: var(--color-text);">
-    {title}
-  </h3>
-  <p style="font-size: 0.875rem; color: var(--color-muted); margin-top: 0.25rem;">{tagline}</p>
-  {frequency && (
-    <p style="font-size: 0.75rem; color: var(--color-muted); margin-top: 0.5rem;">🗓 {frequency}</p>
-  )}
+<a href={`/activities/${slug}`} class="card activity-card">
+  <div class="img-slot activity-thumb">
+    <img src={`/images/activities/${slug}.jpg`} alt="" loading="lazy" onerror="this.remove()" />
+  </div>
+  <div class="activity-body">
+    <h3 class="activity-title">{title}</h3>
+    <p class="activity-tagline">{tagline}</p>
+    {frequency && <p class="activity-freq">{frequency}</p>}
+    <span class="activity-more">くわしく見る →</span>
+  </div>
 </a>
+
+<style>
+  .activity-card { height: 100%; }
+  .activity-thumb { aspect-ratio: 16 / 10; }
+  .activity-body { padding: 1.3rem 1.4rem 1.5rem; }
+  .activity-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  .activity-tagline {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    margin-top: 0.4rem;
+    line-height: 1.6;
+  }
+  .activity-freq {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-size: 0.75rem;
+    color: var(--color-brand-dark);
+    background: var(--color-brand-light);
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+  }
+  .activity-more {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--color-brand);
+    font-weight: 600;
+  }
+</style>
