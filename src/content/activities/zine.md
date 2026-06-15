@@ -2,6 +2,7 @@
 title: ZINE
 order: 4
 tagline: 対話から生まれた言葉を紙に
+comingSoon: true
 ---
 
 ZINEは、たいわ村が制作する小冊子です。

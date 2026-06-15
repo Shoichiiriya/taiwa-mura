@@ -23,12 +23,20 @@ const { Content } = await render(activity);
     </div>
 
     <header class="detail-head">
+      {activity.data.comingSoon && <span class="detail-soon">準備中</span>}
       <h1 class="detail-title">{activity.data.title}</h1>
       <p class="detail-tagline">{activity.data.tagline}</p>
-      {activity.data.frequency && (
+      {!activity.data.comingSoon && activity.data.frequency && (
         <span class="detail-freq">{activity.data.frequency}</span>
       )}
     </header>
+
+    {activity.data.comingSoon && (
+      <p class="soon-note">
+        この活動はまだ始まっていません。これから準備していく「予定」の場です。
+        最新情報は <a href="/links" class="inline-link">SNS</a> でお知らせします。
+      </p>
+    )}
 
     <div class="prose detail-body">
       <Content />
@@ -66,6 +74,28 @@ const { Content } = await render(activity);
     padding: 0.25rem 0.8rem;
     border-radius: 999px;
   }
+  .detail-soon {
+    display: inline-block;
+    margin-bottom: 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--color-surface);
+    background: var(--color-accent);
+    padding: 0.25rem 0.8rem;
+    border-radius: 999px;
+  }
+  .soon-note {
+    margin-top: 1.8rem;
+    padding: 1rem 1.2rem;
+    background: oklch(62% 0.09 55 / 0.1);
+    border: 1px solid oklch(62% 0.09 55 / 0.25);
+    border-radius: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--color-text);
+  }
+  .inline-link { color: var(--color-brand); text-decoration: underline; text-underline-offset: 3px; }
   .detail-body { margin-top: 2.2rem; }
   .detail-cta {
     margin-top: 3rem;

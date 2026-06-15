@@ -4,20 +4,23 @@ interface Props {
   tagline: string;
   frequency?: string;
   slug: string;
+  comingSoon?: boolean;
 }
 
-const { title, tagline, frequency, slug } = Astro.props;
+const { title, tagline, frequency, slug, comingSoon } = Astro.props;
 ---
 
-<a href={`/activities/${slug}`} class="card activity-card">
+<a href={`/activities/${slug}`} class:list={['card', 'activity-card', { soon: comingSoon }]}>
   <div class="img-slot activity-thumb">
     <img src={`/images/activities/${slug}.jpg`} alt="" loading="lazy" onerror="this.remove()" />
+    {comingSoon && <span class="soon-badge">準備中</span>}
   </div>
   <div class="activity-body">
     <h3 class="activity-title">{title}</h3>
     <p class="activity-tagline">{tagline}</p>
-    {frequency && <p class="activity-freq">{frequency}</p>}
-    <span class="activity-more">くわしく見る →</span>
+    {!comingSoon && frequency && <p class="activity-freq">{frequency}</p>}
+    {comingSoon && <p class="activity-freq soon-pill">これから始めます</p>}
+    <span class="activity-more">{comingSoon ? '構想を見る →' : 'くわしく見る →'}</span>
   </div>
 </a>
 
@@ -45,6 +48,24 @@ const { title, tagline, frequency, slug } = Astro.props;
     padding: 0.2rem 0.7rem;
     border-radius: 999px;
   }
+  .soon-pill {
+    color: var(--color-accent);
+    background: oklch(62% 0.09 55 / 0.12);
+  }
+  .soon-badge {
+    position: absolute;
+    z-index: 2;
+    top: 0.8rem;
+    left: 0.8rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--color-surface);
+    background: var(--color-accent);
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+  }
+  .activity-card.soon .activity-thumb { filter: saturate(0.85); }
   .activity-more {
     display: block;
     margin-top: 1rem;

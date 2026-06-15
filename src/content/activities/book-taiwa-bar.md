@@ -3,6 +3,7 @@ title: ブックたいわバー
 order: 5
 tagline: 本とお酒と対話を、ゆるやかに
 frequency: 準備中
+comingSoon: true
 ---
 
 ブックたいわバーは、本・お酒・対話を組み合わせた場です。

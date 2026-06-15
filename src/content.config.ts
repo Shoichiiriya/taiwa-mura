@@ -19,6 +19,7 @@ const activities = defineCollection({
     order: z.number(),
     tagline: z.string(),
     frequency: z.string().optional(),
+    comingSoon: z.boolean().optional(),
   }),
 });
 
